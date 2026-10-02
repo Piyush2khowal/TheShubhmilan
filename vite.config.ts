@@ -9,7 +9,7 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 export default defineConfig({
   // Mongoose uses Node's TCP and TLS modules to talk to MongoDB. A Node Nitro
   // target is therefore required instead of the default Cloudflare worker target.
-  nitro: { preset: "node-server" },
+  nitro: { preset: "netlify" },
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
