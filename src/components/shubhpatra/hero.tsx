@@ -36,6 +36,8 @@ export function Hero() {
             alt="Cream and beige Indian wedding invitation with gold foil arch"
             width={1024}
             height={1280}
+            loading="eager"
+            fetchPriority="high"
             className="h-[18rem] w-full object-cover sm:h-[23rem]"
           />
         </ArchFrame>

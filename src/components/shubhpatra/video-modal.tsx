@@ -1,5 +1,5 @@
-import { X } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { LoaderCircle, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 import type { VideoProduct } from "@/data/products";
 import { whatsappLink } from "./enquiry";
@@ -28,6 +28,7 @@ export function VideoModal({
 
 function VideoModalInner({ video, onClose }: { video: VideoProduct; onClose: () => void }) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [buffering, setBuffering] = useState(!isEmbed(video.videoUrl));
 
   // Stop + reset playback whenever the modal closes/unmounts, and close on Esc.
   useEffect(() => {
@@ -82,7 +83,15 @@ function VideoModalInner({ video, onClose }: { video: VideoProduct; onClose: () 
           <X className="h-4 w-4" />
         </button>
 
-        <div className={`bg-espresso overflow-hidden ${frame}`}>
+        <div className={`bg-espresso relative overflow-hidden ${frame}`}>
+          {buffering ? (
+            <div className="absolute inset-0 z-10 grid place-items-center bg-espresso/60 backdrop-blur-xs">
+              <div className="flex flex-col items-center gap-2">
+                <LoaderCircle className="h-8 w-8 animate-spin text-gold" />
+                <span className="text-[0.62rem] tracking-[0.25em] uppercase text-cream/75">Loading film…</span>
+              </div>
+            </div>
+          ) : null}
           {isEmbed(video.videoUrl) ? (
             <iframe
               src={embedSrc(video.videoUrl)}
@@ -101,6 +110,10 @@ function VideoModalInner({ video, onClose }: { video: VideoProduct; onClose: () 
               autoPlay
               playsInline
               preload="metadata"
+              onCanPlay={() => setBuffering(false)}
+              onLoadedData={() => setBuffering(false)}
+              onWaiting={() => setBuffering(true)}
+              onPlaying={() => setBuffering(false)}
               className="h-full w-full object-contain"
             />
           )}

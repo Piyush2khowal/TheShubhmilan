@@ -33,7 +33,8 @@ function PhysicalCardsPage() {
   const [product, setProduct] = useState<BaseProduct | null>(null);
   const [query, setQuery] = useState("");
   const adminProducts = useAdminCatalogue();
-  const catalogueCards = [...adminProducts.cards, ...physicalCards];
+  const catalogueCards =
+    adminProducts.cards.length > 0 ? adminProducts.cards : physicalCards;
 
   const filtered = useMemo(() => {
     const term = query.trim().toLowerCase();

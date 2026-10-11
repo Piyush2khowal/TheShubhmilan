@@ -1,16 +1,20 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { createFileRoute, Outlet, useChildMatches } from "@tanstack/react-router";
+import { useMemo, useState } from "react";
 
-import { CataloguePage, type CatalogueSection } from "@/components/shubhpatra/catalogue-page";
+import {
+  CataloguePage,
+  type CatalogueSection,
+} from "@/components/shubhpatra/catalogue-page";
 import { Contact, SiteFooter } from "@/components/shubhpatra/contact";
 import { ProductModal } from "@/components/shubhpatra/product-modal";
 import { SiteHeader } from "@/components/shubhpatra/site-header";
-import { useAdminCatalogue } from "@/hooks/use-admin-catalogue";
+import { useAdminCatalogue, useCatalogueTree } from "@/hooks/use-admin-catalogue";
 import {
   digitalCatalogueGroups,
   digitalSubcategoryDesigns,
   type BaseProduct,
 } from "@/data/products";
+import { slugify } from "@/lib/product.shared";
 
 const title = "Digital Invitations — TheShubhmilan";
 const description =
@@ -28,21 +32,57 @@ export const Route = createFileRoute("/digital-invite")({
       { property: "og:description", content: description },
     ],
   }),
-  component: DigitalInvitePage,
+  component: DigitalInviteWrapper,
 });
 
-const sections: CatalogueSection[] = digitalCatalogueGroups.flatMap((g) =>
-  g.subcategories.map((subcategory) => ({ group: g.group, subcategory })),
-);
+function DigitalInviteWrapper() {
+  const childMatches = useChildMatches();
+  if (childMatches.length > 0) {
+    return <Outlet />;
+  }
+  return <DigitalInvitePage />;
+}
 
 function DigitalInvitePage() {
   const search = Route.useSearch();
   const sub = search["sub"];
   const [product, setProduct] = useState<BaseProduct | null>(null);
-  const adminProducts = useAdminCatalogue();
-  const catalogueSections = adminProducts.digital.length
-    ? [...sections, { group: "New Arrivals", subcategory: "Admin Products" }]
-    : sections;
+
+  const { tree } = useCatalogueTree();
+  const adminCatalogue = useAdminCatalogue();
+
+  // Build sections from MongoDB catalogue tree, falling back to static groups
+  const sections: CatalogueSection[] = useMemo(() => {
+    const digitalRoot = tree?.categories.find(
+      (c) => c.slug === "digital-invite" || c.name.toLowerCase().includes("digital"),
+    );
+
+    if (digitalRoot && digitalRoot.subcategories.length > 0) {
+      return digitalRoot.subcategories.map((sc) => ({
+        group: digitalRoot.name,
+        subcategory: sc.name,
+        slug: sc.slug,
+        image: sc.image,
+        count: sc.productCount,
+        href: `/digital-invite/${sc.slug}`,
+      }));
+    }
+
+    // Static fallback: ONE combined card per subcategory (Save the Date, Roka Ceremony, Engagement, etc.)
+    return digitalCatalogueGroups.flatMap((g) =>
+      g.subcategories.map((subcategory) => {
+        const slug = slugify(subcategory);
+        const count = subcategory === "Save the Date" ? 10 : 1;
+        return {
+          group: g.group,
+          subcategory,
+          slug,
+          count,
+          href: `/digital-invite/${slug}`,
+        };
+      }),
+    );
+  }, [tree]);
 
   return (
     <div className="bg-ivory min-h-screen">
@@ -58,12 +98,17 @@ function DigitalInvitePage() {
             </>
           }
           lead="From save-the-dates to path & pooja and kids' celebrations — pick a category to see every design."
-          sections={catalogueSections}
-          getDesigns={(section) =>
-            section.subcategory === "Admin Products"
-              ? adminProducts.digital
-              : digitalSubcategoryDesigns(section.group ?? "", section.subcategory)
-          }
+          sections={sections}
+          getDesigns={(section) => {
+            // Find in admin catalogue if available
+            const matchingAdmin = adminCatalogue.digital.filter(
+              (p) =>
+                slugify(p.subcategory) === (section.slug || slugify(section.subcategory)) ||
+                p.subcategory.toLowerCase() === section.subcategory.toLowerCase(),
+            );
+            if (matchingAdmin.length > 0) return matchingAdmin;
+            return digitalSubcategoryDesigns(section.group ?? "", section.subcategory);
+          }}
           activeKey={sub}
           onOpen={setProduct}
         />

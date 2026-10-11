@@ -53,13 +53,15 @@ export function VideoSection({
                   if (video.videoUrl) onPlay(video);
                 }}
                 aria-label={video.videoUrl ? `Play ${video.title}` : `${video.title} (Coming Soon)`}
-                className="group border-gold/35 hover:border-gold/70 relative block aspect-square w-full overflow-hidden border bg-card transition-colors"
+                className="group border-gold/35 hover:border-gold/70 relative block aspect-square w-full overflow-hidden border bg-card transition-colors cursor-pointer"
               >
                 <img
                   src={video.poster}
                   alt={video.title}
-                  loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading={index < 4 ? "eager" : "lazy"}
+                  width={600}
+                  height={600}
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 {video.videoUrl ? (
                   <span className="border-gold/80 bg-cream/70 text-brown absolute top-1/2 left-1/2 grid h-14 w-14 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border backdrop-blur transition-transform duration-500 group-hover:scale-110">

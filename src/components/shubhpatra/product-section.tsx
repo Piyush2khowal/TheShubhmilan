@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 
 import type { BaseProduct } from "@/data/products";
+import { isSaveTheDateLabel, isVideoSrc } from "@/lib/media";
 import { cn } from "@/lib/utils";
 import { ProductCard } from "./product-card";
 import { SectionHeading } from "./ornaments";
@@ -20,6 +21,7 @@ export function ProductSection({
   initial = 9,
   step = 9,
   viewAllHref,
+  excludeSaveTheDate = false,
 }: {
   id: string;
   eyebrow: string;
@@ -35,18 +37,25 @@ export function ProductSection({
   step?: number;
   /** When set, shows a "Browse Full Catalogue" link to the full category page. */
   viewAllHref?: string;
+  /** Keep Save the Date designs on their own catalogue grid. */
+  excludeSaveTheDate?: boolean;
 }) {
   const { ref, visible } = useReveal<HTMLDivElement>();
   const [shown, setShown] = useState(initial);
   const dark = tone === "dark";
-  const list = products.slice(0, shown);
+  const imageProducts = products.filter((product) => {
+    if (isVideoSrc(product.image) || product.category === "video") return false;
+    if (excludeSaveTheDate && isSaveTheDateLabel(product.subcategory)) return false;
+    return true;
+  });
+  const list = imageProducts.slice(0, shown);
 
   return (
     <section id={id} className={cn("py-20 sm:py-28", dark ? "bg-beige/45" : "bg-cream", className)}>
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <SectionHeading eyebrow={eyebrow} title={title} lead={lead} />
         <p className="text-brown/60 mt-8 text-center text-xs tracking-[0.2em] uppercase">
-          Showing {list.length} of {products.length} designs
+          Showing {list.length} of {imageProducts.length} designs
         </p>
         <div
           ref={ref}
@@ -56,15 +65,20 @@ export function ProductSection({
             <div
               key={product.id}
               data-visible={visible}
-              style={{ transitionDelay: `${(index % 3) * 120}ms` }}
+              style={{ transitionDelay: `${(index % 4) * 60}ms` }}
               className="reveal"
             >
-              <ProductCard product={product} onOpen={onOpen} className="h-full" />
+              <ProductCard
+                product={product}
+                onOpen={onOpen}
+                className="h-full"
+                priority={index < 4}
+              />
             </div>
           ))}
         </div>
 
-        {shown < products.length ? (
+        {shown < imageProducts.length ? (
           <div className="mt-12 text-center">
             <button
               type="button"

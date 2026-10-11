@@ -14,6 +14,7 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as DigitalInviteRouteImport } from './routes/digital-invite'
 import { Route as PhysicalCardsRouteImport } from './routes/physical-cards'
 import { Route as StationeryRouteImport } from './routes/stationery'
+import { Route as DigitalInviteSlugRouteImport } from './routes/digital-invite.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -40,35 +41,54 @@ const StationeryRoute = StationeryRouteImport.update({
   path: '/stationery',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DigitalInviteSlugRoute = DigitalInviteSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => DigitalInviteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
-  '/digital-invite': typeof DigitalInviteRoute
+  '/digital-invite': typeof DigitalInviteRouteWithChildren
   '/physical-cards': typeof PhysicalCardsRoute
   '/stationery': typeof StationeryRoute
+  '/digital-invite/$slug': typeof DigitalInviteSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
-  '/digital-invite': typeof DigitalInviteRoute
+  '/digital-invite': typeof DigitalInviteRouteWithChildren
   '/physical-cards': typeof PhysicalCardsRoute
   '/stationery': typeof StationeryRoute
+  '/digital-invite/$slug': typeof DigitalInviteSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
-  '/digital-invite': typeof DigitalInviteRoute
+  '/digital-invite': typeof DigitalInviteRouteWithChildren
   '/physical-cards': typeof PhysicalCardsRoute
   '/stationery': typeof StationeryRoute
+  '/digital-invite/$slug': typeof DigitalInviteSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/admin' | '/digital-invite' | '/physical-cards' | '/stationery'
+    | '/'
+    | '/admin'
+    | '/digital-invite'
+    | '/physical-cards'
+    | '/stationery'
+    | '/digital-invite/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin' | '/digital-invite' | '/physical-cards' | '/stationery'
+  to:
+    | '/'
+    | '/admin'
+    | '/digital-invite'
+    | '/physical-cards'
+    | '/stationery'
+    | '/digital-invite/$slug'
   id:
     | '__root__'
     | '/'
@@ -76,12 +96,13 @@ export interface FileRouteTypes {
     | '/digital-invite'
     | '/physical-cards'
     | '/stationery'
+    | '/digital-invite/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRoute
-  DigitalInviteRoute: typeof DigitalInviteRoute
+  DigitalInviteRoute: typeof DigitalInviteRouteWithChildren
   PhysicalCardsRoute: typeof PhysicalCardsRoute
   StationeryRoute: typeof StationeryRoute
 }
@@ -123,13 +144,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StationeryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/digital-invite/$slug': {
+      id: '/digital-invite/$slug'
+      path: '/$slug'
+      fullPath: '/digital-invite/$slug'
+      preLoaderRoute: typeof DigitalInviteSlugRouteImport
+      parentRoute: typeof DigitalInviteRoute
+    }
   }
 }
+
+interface DigitalInviteRouteChildren {
+  DigitalInviteSlugRoute: typeof DigitalInviteSlugRoute
+}
+
+const DigitalInviteRouteChildren: DigitalInviteRouteChildren = {
+  DigitalInviteSlugRoute: DigitalInviteSlugRoute,
+}
+
+const DigitalInviteRouteWithChildren = DigitalInviteRoute._addFileChildren(
+  DigitalInviteRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRoute,
-  DigitalInviteRoute: DigitalInviteRoute,
+  DigitalInviteRoute: DigitalInviteRouteWithChildren,
   PhysicalCardsRoute: PhysicalCardsRoute,
   StationeryRoute: StationeryRoute,
 }

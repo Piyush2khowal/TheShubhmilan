@@ -60,7 +60,10 @@ function Index() {
             </>
           }
           lead="Illuminated arches, marigold borders and gold typography — delivered as MP4 and a shareable link."
-          products={[...adminProducts.digital, ...digitalInvitations]}
+          products={
+            adminProducts.digital.length > 0 ? adminProducts.digital : digitalInvitations
+          }
+          excludeSaveTheDate
           onOpen={setProduct}
           viewAllHref="/digital-invite"
         />
@@ -73,12 +76,20 @@ function Index() {
             </>
           }
           lead="Welcome boards, seating charts, menus and thank-you notes finished in foil and handmade paper."
-          products={[...adminProducts.stationery, ...stationery]}
+          products={
+            adminProducts.stationery.length > 0 ? adminProducts.stationery : stationery
+          }
           tone="dark"
           onOpen={setProduct}
         />
-        <VideoSection onPlay={setVideo} videos={[...adminProducts.videos, ...videoInvitations]} />
-        <CardsCatalogue onOpen={setProduct} products={[...adminProducts.cards, ...physicalCards]} />
+        <VideoSection
+          onPlay={setVideo}
+          videos={adminProducts.videos.length > 0 ? adminProducts.videos : videoInvitations}
+        />
+        <CardsCatalogue
+          onOpen={setProduct}
+          products={adminProducts.cards.length > 0 ? adminProducts.cards : physicalCards}
+        />
         <Highlights />
         <Faq />
         <Contact />

@@ -11,11 +11,15 @@ export interface CatalogueSection {
   /** Optional group label, e.g. "Path & Pooja". Omit for a flat taxonomy. */
   group?: string;
   subcategory: string;
+  slug?: string;
+  image?: string;
+  count?: number;
+  href?: string;
 }
 
-const PAGE_SIZE = 25;
+const PAGE_SIZE = 24;
 
-function slug(value?: string) {
+export function slug(value?: string) {
   return (value ?? "")
     .toLowerCase()
     .trim()
@@ -25,6 +29,7 @@ function slug(value?: string) {
 
 /** Stable key identifying a section, even when the same subcategory name repeats under two groups. */
 export function sectionKey(section: CatalogueSection) {
+  if (section.slug) return section.slug;
   return section.group
     ? `${slug(section.group)}--${slug(section.subcategory)}`
     : slug(section.subcategory);
@@ -43,6 +48,7 @@ function haystackOf(product: BaseProduct) {
     card.colour,
     card.occasion,
     ...(product.tags ?? []),
+    ...(product.details ?? []),
   ]
     .filter(Boolean)
     .join(" ")
@@ -70,7 +76,12 @@ export function CataloguePage({
   activeKey?: string | undefined;
   onOpen: (product: BaseProduct) => void;
 }) {
-  const activeSection = sections.find((s) => sectionKey(s) === activeKey);
+  const activeSection = sections.find(
+    (s) =>
+      sectionKey(s) === activeKey ||
+      s.slug === activeKey ||
+      slug(s.subcategory) === activeKey,
+  );
 
   if (!activeSection) {
     return (
@@ -96,7 +107,7 @@ export function CataloguePage({
   );
 }
 
-function CategoryGridView({
+export function CategoryGridView({
   basePath,
   categoryLabel,
   eyebrow,
@@ -156,12 +167,18 @@ function CategoryGridView({
               <div className="mt-6 grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3 lg:grid-cols-4">
                 {visible.map((section) => {
                   const key = sectionKey(section);
-                  const thumb = generateDesignSvg(`${basePath}-${key}-cover`);
+                  const thumb =
+                    section.image && section.image.length > 5
+                      ? section.image
+                      : generateDesignSvg(`${basePath}-${key}-cover`);
+
+                  const destination =
+                    section.href || `${basePath}/${section.slug || key}`;
+
                   return (
                     <Link
                       key={key}
-                      to={basePath}
-                      search={{ sub: key }}
+                      to={destination}
                       className="group border-gold/35 hover:border-gold/70 relative block overflow-hidden border bg-card transition-all duration-500 hover:-translate-y-1"
                     >
                       <div className="relative">
@@ -170,6 +187,9 @@ function CategoryGridView({
                           alt={section.subcategory}
                           loading="lazy"
                           className="h-40 w-full object-cover transition-transform duration-700 group-hover:scale-105 sm:h-48"
+                          onError={(e) => {
+                            e.currentTarget.src = generateDesignSvg(`${basePath}-${key}-cover`);
+                          }}
                         />
                         <div className="from-espresso via-espresso/25 absolute inset-0 bg-gradient-to-t to-transparent" />
                       </div>
@@ -178,7 +198,9 @@ function CategoryGridView({
                           {section.subcategory}
                         </h3>
                         <p className="text-taupe mt-1 text-[0.62rem] tracking-[0.25em] uppercase">
-                          {TARGET_PER_SUBCATEGORY} designs
+                          {typeof section.count === "number"
+                            ? `${section.count} ${section.count === 1 ? "design" : "designs"}`
+                            : `${TARGET_PER_SUBCATEGORY} designs`}
                         </p>
                         <span className="text-gold mt-2 inline-block text-[0.6rem] tracking-[0.3em] uppercase">
                           Explore →
@@ -196,7 +218,7 @@ function CategoryGridView({
   );
 }
 
-function SubcategoryCatalogue({
+export function SubcategoryCatalogue({
   basePath,
   categoryLabel,
   section,
@@ -225,7 +247,7 @@ function SubcategoryCatalogue({
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <Link
           to={basePath}
-          className="text-taupe hover:text-brown inline-flex items-center gap-2 text-[0.65rem] tracking-[0.3em] uppercase"
+          className="text-taupe hover:text-brown inline-flex items-center gap-2 text-[0.65rem] tracking-[0.3em] uppercase cursor-pointer"
         >
           <ArrowLeft className="h-3.5 w-3.5" />
           Back to Categories
@@ -234,7 +256,7 @@ function SubcategoryCatalogue({
         <SectionHeading
           eyebrow={`${categoryLabel}${section.group ? ` · ${section.group}` : ""}`}
           title={<>{section.subcategory}</>}
-          lead={`Browse every ${section.subcategory} design — search, then load more to see the full catalogue.`}
+          lead={`Browse every ${section.subcategory} design — crafted with luxury fonts, delicate motifs, and gold accents.`}
           className="mt-6"
         />
 
@@ -247,7 +269,7 @@ function SubcategoryCatalogue({
               setQuery(event.target.value);
               setShown(PAGE_SIZE);
             }}
-            placeholder="Search by name, style, colour, motif…"
+            placeholder="Search by design name, collection, style…"
             aria-label={`Search ${section.subcategory} designs`}
             className="text-brown placeholder:text-brown/45 w-full bg-transparent text-sm outline-none"
           />
@@ -268,7 +290,7 @@ function SubcategoryCatalogue({
             <button
               type="button"
               onClick={() => setShown((value) => Math.min(value + PAGE_SIZE, filtered.length))}
-              className="border-brown text-brown hover:bg-brown hover:text-cream border px-10 py-3.5 text-[0.7rem] tracking-[0.3em] uppercase transition-colors"
+              className="border-brown text-brown hover:bg-brown hover:text-cream border px-10 py-3.5 text-[0.7rem] tracking-[0.3em] uppercase transition-colors cursor-pointer"
             >
               Load More Designs
             </button>
@@ -277,7 +299,7 @@ function SubcategoryCatalogue({
 
         {filtered.length === 0 ? (
           <p className="text-taupe mt-12 text-center text-sm">
-            No designs match “{query}” yet — try another search term.
+            No designs match &ldquo;{query}&rdquo; yet — try another search term.
           </p>
         ) : null}
       </div>

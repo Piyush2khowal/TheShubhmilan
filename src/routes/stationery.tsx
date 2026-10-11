@@ -1,16 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 import { CataloguePage, type CatalogueSection } from "@/components/shubhpatra/catalogue-page";
 import { Contact, SiteFooter } from "@/components/shubhpatra/contact";
 import { ProductModal } from "@/components/shubhpatra/product-modal";
 import { SiteHeader } from "@/components/shubhpatra/site-header";
-import { useAdminCatalogue } from "@/hooks/use-admin-catalogue";
+import { useAdminCatalogue, useCatalogueTree } from "@/hooks/use-admin-catalogue";
 import {
   stationerySubcategories,
   stationerySubcategoryDesigns,
   type BaseProduct,
 } from "@/data/products";
+import { slugify } from "@/lib/product.shared";
 
 const title = "Stationery — TheShubhmilan";
 const description =
@@ -31,18 +32,35 @@ export const Route = createFileRoute("/stationery")({
   component: StationeryPage,
 });
 
-const sections: CatalogueSection[] = stationerySubcategories.map((subcategory) => ({
-  subcategory,
-}));
-
 function StationeryPage() {
   const search = Route.useSearch();
   const sub = search["sub"];
   const [product, setProduct] = useState<BaseProduct | null>(null);
-  const adminProducts = useAdminCatalogue();
-  const catalogueSections = adminProducts.stationery.length
-    ? [...sections, { group: "New Arrivals", subcategory: "Admin Products" }]
-    : sections;
+
+  const { tree } = useCatalogueTree();
+  const adminCatalogue = useAdminCatalogue();
+
+  const sections: CatalogueSection[] = useMemo(() => {
+    const stationeryRoot = tree?.categories.find(
+      (c) => c.slug === "stationery" || c.name.toLowerCase().includes("stationery"),
+    );
+
+    if (stationeryRoot && stationeryRoot.subcategories.length > 0) {
+      return stationeryRoot.subcategories.map((sc) => ({
+        group: "Stationery",
+        subcategory: sc.name,
+        slug: sc.slug,
+        image: sc.image,
+        count: sc.productCount,
+      }));
+    }
+
+    return stationerySubcategories.map((subcategory) => ({
+      subcategory,
+      slug: slugify(subcategory),
+      count: 1,
+    }));
+  }, [tree]);
 
   return (
     <div className="bg-ivory min-h-screen">
@@ -58,12 +76,16 @@ function StationeryPage() {
             </>
           }
           lead="Signages, welcome notes, menus, envelopes and scrolls — pick a category to see every design."
-          sections={catalogueSections}
-          getDesigns={(section) =>
-            section.subcategory === "Admin Products"
-              ? adminProducts.stationery
-              : stationerySubcategoryDesigns(section.subcategory)
-          }
+          sections={sections}
+          getDesigns={(section) => {
+            const matchingAdmin = adminCatalogue.stationery.filter(
+              (p) =>
+                slugify(p.subcategory) === (section.slug || slugify(section.subcategory)) ||
+                p.subcategory.toLowerCase() === section.subcategory.toLowerCase(),
+            );
+            if (matchingAdmin.length > 0) return matchingAdmin;
+            return stationerySubcategoryDesigns(section.subcategory);
+          }}
           activeKey={sub}
           onOpen={setProduct}
         />

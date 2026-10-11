@@ -1,4 +1,5 @@
 import type { BaseProduct } from "@/data/products";
+import { thumbnailSrc } from "@/lib/media";
 import { cn } from "@/lib/utils";
 
 export function ProductCard({
@@ -6,17 +7,19 @@ export function ProductCard({
   onOpen,
   tone = "light",
   className,
+  priority = false,
 }: {
   product: BaseProduct;
   onOpen: (product: BaseProduct) => void;
   tone?: "light" | "dark";
   className?: string;
+  priority?: boolean;
 }) {
   const dark = tone === "dark";
   return (
     <article
       className={cn(
-        "group border-gold/35 relative flex flex-col border p-3 transition-all duration-500 hover:-translate-y-1",
+        "group border-gold/35 relative flex flex-col border p-3 transition-all duration-300 hover:-translate-y-1",
         dark ? "bg-green/40 hover:border-gold/70" : "bg-card hover:border-gold/70",
         className,
       )}
@@ -27,16 +30,19 @@ export function ProductCard({
       <button
         type="button"
         onClick={() => onOpen(product)}
-        className="block w-full overflow-hidden text-left"
+        className="block aspect-[4/5] sm:aspect-square w-full overflow-hidden bg-beige/35 text-left cursor-pointer"
       >
-        <img
-          src={product.images?.[0] ?? product.image}
-          alt={product.title}
-          loading="lazy"
-          width={1024}
-          height={1024}
-          className="h-56 w-full object-cover transition-transform duration-700 group-hover:scale-[1.05] sm:h-64"
-        />
+          <img
+            src={thumbnailSrc(product.images?.[0] ?? product.image, priority ? 900 : 640)}
+            alt={product.title}
+            loading={priority ? "eager" : "lazy"}
+            fetchPriority={priority ? "high" : "auto"}
+            decoding="async"
+            width={600}
+            height={750}
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+          />
       </button>
 
       <div className="flex flex-1 flex-col px-3 pt-5 pb-3 text-center">
