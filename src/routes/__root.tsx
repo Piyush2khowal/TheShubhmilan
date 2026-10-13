@@ -110,12 +110,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/41ab87bc3512b8ffee3b44e715a1e309/id-preview-0da2278a--9ee36d34-6cc1-45a9-94ca-0041f4968338.lovable.app-1786722071464.png",
       },
     ],
-    links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
-    ],
+      links: [
+    {
+      rel: "stylesheet",
+      href: appCss,
+    },
+    {
+      rel: "icon",
+      type: "image/png",
+      href: "/assets/logo/theshubhmilan_logo.png",
+    },
+],
   }),
   shellComponent: RootShell,
   component: RootComponent,

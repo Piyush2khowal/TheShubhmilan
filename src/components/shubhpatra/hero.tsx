@@ -5,7 +5,7 @@ import { brand } from "@/data/products";
 import { whatsappLink } from "./enquiry";
 import { ArchFrame, BotanicalOrnament, GoldDivider } from "./ornaments";
 
-const logoSrc = "/assets/logo/shubhpatra-logo.jpg";
+const logoSrc = "/assets/logo/theshubhmilan_logo.png";
 
 export function Hero() {
   return (

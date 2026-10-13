@@ -5,7 +5,7 @@ import { whatsappLink } from "./enquiry";
 import { BotanicalOrnament, GoldDivider, SectionHeading } from "./ornaments";
 import { useReveal } from "./use-reveal";
 
-const logoSrc = "/assets/logo/shubhpatra-logo.jpg";
+const logoSrc = "/assets/logo/theshubhmilan_logo.png";
 
 export function Contact() {
   const { ref, visible } = useReveal<HTMLDivElement>();

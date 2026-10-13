@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { brand } from "@/data/products";
 import { whatsappLink } from "./enquiry";
 
-const logoSrc = "/assets/logo/shubhpatra-logo.jpg";
+const logoSrc = "/assets/logo/theshubhmilan_logo.png";
 
 const links = [
   { href: "/#top", label: "Home" },
