@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Outlet, useChildMatches } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 
 import { CataloguePage, type CatalogueSection } from "@/components/shubhpatra/catalogue-page";
@@ -29,8 +29,16 @@ export const Route = createFileRoute("/stationery")({
       { property: "og:description", content: description },
     ],
   }),
-  component: StationeryPage,
+  component: StationeryWrapper,
 });
+
+function StationeryWrapper() {
+  const childMatches = useChildMatches();
+  if (childMatches.length > 0) {
+    return <Outlet />;
+  }
+  return <StationeryPage />;
+}
 
 function StationeryPage() {
   const search = Route.useSearch();
@@ -52,14 +60,20 @@ function StationeryPage() {
         slug: sc.slug,
         image: sc.image,
         count: sc.productCount,
+        href: `/stationery/${sc.slug}`,
       }));
     }
 
-    return stationerySubcategories.map((subcategory) => ({
-      subcategory,
-      slug: slugify(subcategory),
-      count: 1,
-    }));
+    return stationerySubcategories.map((subcategory) => {
+      const slug = slugify(subcategory);
+      return {
+        group: "Stationery",
+        subcategory,
+        slug,
+        count: 1,
+        href: `/stationery/${slug}`,
+      };
+    });
   }, [tree]);
 
   return (

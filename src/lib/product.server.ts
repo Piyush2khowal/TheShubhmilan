@@ -95,7 +95,7 @@ export const listPublicCatalogueTree = createServerFn({ method: "GET" }).handler
   }
 
   // Graceful fallback from static definitions
-  const { digitalCatalogueGroups } = await import("@/data/products");
+  const { digitalCatalogueGroups, stationerySubcategories } = await import("@/data/products");
   const { slugify } = await import("./product.shared");
 
   return {
@@ -118,6 +118,24 @@ export const listPublicCatalogueTree = createServerFn({ method: "GET" }).handler
             productCount: sub === "Save the Date" ? 10 : 1,
           })),
         ),
+      },
+      {
+        id: "stationery",
+        name: "Stationery",
+        slug: "stationery",
+        description:
+          "Signages, welcome notes, menus, itineraries, money envelopes, tags and wedding scrolls.",
+        image: "",
+        displayOrder: 2,
+        subcategories: stationerySubcategories.map((sub, i) => ({
+          id: `sub-${slugify(sub)}`,
+          name: sub,
+          slug: slugify(sub),
+          description: `${sub} designs`,
+          image: "",
+          displayOrder: i + 1,
+          productCount: 1,
+        })),
       },
     ],
   };
