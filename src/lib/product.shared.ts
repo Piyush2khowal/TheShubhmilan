@@ -10,6 +10,43 @@ export function slugify(text: string): string {
     .replace(/^-+|-+$/g, "");
 }
 
+export function matchStationerySubcategory(
+  product: {
+    subcategory?: string;
+    category?: string;
+    categoryName?: string;
+    type?: string;
+    categoryId?: string;
+  },
+  targetSlugOrName: string,
+): boolean {
+  if (product.type && product.type !== "stationery") {
+    return false;
+  }
+  const targetSlug = slugify(targetSlugOrName);
+  const targetName = targetSlugOrName.trim().toLowerCase();
+
+  const sub = product.subcategory || product.categoryName || product.category || "";
+  const subSlug = slugify(sub);
+  const subName = sub.trim().toLowerCase();
+
+  if (
+    subSlug === targetSlug ||
+    subName === targetName ||
+    (product.categoryId ? slugify(product.categoryId) === targetSlug : false)
+  ) {
+    return true;
+  }
+
+  // Handle singular/plural variations (e.g., "signages" vs "signage")
+  const normalize = (s: string) => s.replace(/signages/g, "signage");
+  if (normalize(subSlug) === normalize(targetSlug)) {
+    return true;
+  }
+
+  return false;
+}
+
 export type AdminCategory = {
   id: string;
   name: string;
