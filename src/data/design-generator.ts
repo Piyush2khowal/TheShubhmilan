@@ -78,7 +78,7 @@ const DESCRIPTION_OPENERS = [
 ];
 
 const DESCRIPTION_CLOSERS = [
-  "set in the TheShubhmilan cream, beige and gold palette.",
+  "set in the The Shubhmilan cream, beige and gold palette.",
   "in warm cocoa and muted gold tones.",
   "with fine gold linework throughout.",
   "finished in ivory, taupe and espresso.",

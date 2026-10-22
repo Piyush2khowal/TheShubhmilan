@@ -27,7 +27,7 @@ export function Highlights() {
       <div className="mx-auto max-w-6xl px-5 lg:px-8">
         <div className="text-center mb-12">
           <span className="text-taupe text-[0.65rem] tracking-[0.4em] uppercase block mb-3 font-body">
-            WHY TheShubhmilan
+            WHY The Shubhmilan
           </span>
           <h2 className="text-cocoa font-display text-3xl sm:text-4xl">
             Made for Moments That Matter

@@ -24,7 +24,7 @@ export function About() {
           <div className="border-gold/30 relative border p-3">
             <img
               src={aboutImage1}
-              alt="TheShubhmilan wedding invitation"
+              alt="The Shubhmilan wedding invitation"
               loading="lazy"
               width={1024}
               height={1024}
@@ -35,7 +35,7 @@ export function About() {
           {/* Text */}
           <div className="min-w-0">
             <p className="text-taupe text-[0.7rem] tracking-[0.45em] uppercase">
-              About TheShubhmilan
+              About The Shubhmilan
             </p>
 
             <h2 className="text-cocoa mt-4 text-3xl leading-tight sm:text-4xl">
@@ -46,14 +46,14 @@ export function About() {
 
             <div className="text-brown/80 mt-7 space-y-5 text-sm leading-relaxed sm:text-base">
               <p>
-                At TheShubhmilan, we believe a wedding invitation is more than
+                At The Shubhmilan, we believe a wedding invitation is more than
                 just a card — it is the first glimpse into your celebration,
                 your traditions, and your love story.
               </p>
 
               <p>
                 Rooted in the beauty of Indian culture and inspired by
-                timeless craftsmanship, TheShubhmilan creates premium wedding
+                timeless craftsmanship, The Shubhmilan creates premium wedding
                 invitations and luxury wedding stationery that make every
                 celebration feel truly special.
               </p>
@@ -88,7 +88,7 @@ export function About() {
               </p>
 
               <p>
-                At TheShubhmilan, our aim is to turn your wedding vision into
+                At The Shubhmilan, our aim is to turn your wedding vision into
                 stationery that you will cherish long after the celebrations
                 are over. Every design is created with attention to detail,
                 quality, and the little touches that make your story
@@ -96,7 +96,7 @@ export function About() {
               </p>
 
               <p>
-                TheShubhmilan — thoughtfully designed for your most beautiful
+                The Shubhmilan — thoughtfully designed for your most beautiful
                 beginnings.
               </p>
             </div>
@@ -106,7 +106,7 @@ export function About() {
           <div className="border-gold/30 relative border p-3">
             <img
               src={aboutImage2}
-              alt="TheShubhmilan wedding stationery"
+              alt="The Shubhmilan wedding stationery"
               loading="lazy"
               width={1024}
               height={1024}
@@ -125,7 +125,7 @@ export function About() {
           <div className="border-gold/30 relative border p-3">
             <img
               src={aboutImage3}
-              alt="TheShubhmilan wedding stationery collection"
+              alt="The Shubhmilan wedding stationery collection"
               loading="lazy"
               width={1024}
               height={1024}

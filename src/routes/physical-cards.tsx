@@ -10,7 +10,7 @@ import { SiteHeader } from "@/components/shubhpatra/site-header";
 import { useAdminCatalogue } from "@/hooks/use-admin-catalogue";
 import { physicalCards, type BaseProduct } from "@/data/products";
 
-const title = "Physical Cards — TheShubhmilan";
+const title = "Physical Cards — The Shubhmilan";
 const description =
   "Printed invitation cards — velvet boxes, laser-cut jaali, hot foil and scrolls — browse our complete 25-design catalogue.";
 

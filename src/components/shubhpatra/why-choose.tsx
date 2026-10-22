@@ -9,7 +9,7 @@ export function WhyChoose() {
     <section id="why" className="bg-cream py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <SectionHeading
-          eyebrow="Why Choose TheShubhmilan"
+          eyebrow="Why Choose The Shubhmilan"
           title={
             <>
               Quietly crafted, <span className="font-display italic">carefully delivered</span>

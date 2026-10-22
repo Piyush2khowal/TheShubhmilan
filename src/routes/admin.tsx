@@ -47,7 +47,7 @@ import {
 } from "@/lib/product.server";
 
 export const Route = createFileRoute("/admin")({
-  head: () => ({ meta: [{ title: "Catalogue CMS — TheShubhmilan Admin" }] }),
+  head: () => ({ meta: [{ title: "Catalogue CMS — The Shubhmilan Admin" }] }),
   component: AdminPage,
 });
 
@@ -488,7 +488,7 @@ function AdminPage() {
         {/* Header */}
         <header className="flex flex-wrap items-end justify-between gap-5 border-b border-gold/40 pb-7">
           <div>
-            <p className="text-gold text-[0.65rem] tracking-[0.35em] uppercase">TheShubhmilan CMS</p>
+            <p className="text-gold text-[0.65rem] tracking-[0.35em] uppercase">The Shubhmilan CMS</p>
             <h1 className="mt-1 font-serif text-3xl sm:text-4xl text-brown">Catalogue Manager</h1>
             <p className="text-taupe mt-1 text-xs sm:text-sm">
               Manage database-driven categories, subcategories, and designs in MongoDB without editing code.
@@ -1476,7 +1476,7 @@ function AdminLogin({ onSignedIn }: { onSignedIn: (username: string) => void }) 
         <div className="mx-auto grid h-12 w-12 place-items-center rounded-full border border-gold/55 text-gold">
           <LockKeyhole className="h-5 w-5" />
         </div>
-        <p className="text-gold mt-5 text-center text-[0.62rem] tracking-[0.32em] uppercase">TheShubhmilan</p>
+        <p className="text-gold mt-5 text-center text-[0.62rem] tracking-[0.32em] uppercase">The Shubhmilan</p>
         <h1 className="mt-2 text-center text-4xl">Admin sign in</h1>
         <p className="text-taupe mt-3 text-center text-sm leading-relaxed">
           Enter the credentials configured on the server to manage your catalogue.

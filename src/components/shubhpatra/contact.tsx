@@ -23,8 +23,8 @@ export function Contact() {
   const formData = new FormData(form);
 
   formData.append("access_key", "b7db5af4-ecfc-44c7-b0cd-7b3ec994a4b2");
-  formData.append("subject", "New TheShubhmilan Enquiry");
-  formData.append("from_name", "TheShubhmilan Website");
+  formData.append("subject", "New The Shubhmilan Enquiry");
+  formData.append("from_name", "The Shubhmilan Website");
 
   try {
     const response = await fetch("https://api.web3forms.com/submit", {

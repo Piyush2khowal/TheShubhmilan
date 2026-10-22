@@ -4,10 +4,10 @@
  */
 
 export const about = {
-  eyebrow: "About TheShubhmilan",
+  eyebrow: "About The Shubhmilan",
   title: "Invitations made the way heirlooms are",
   paragraphs: [
-    "TheShubhmilan is a small studio of designers, illustrators and print craftspeople creating wedding invitations for Indian families — digital suites, invitation films, day-of stationery and printed cards.",
+    "The Shubhmilan is a small studio of designers, illustrators and print craftspeople creating wedding invitations for Indian families — digital suites, invitation films, day-of stationery and printed cards.",
     "Every design begins with a conversation about your ceremonies, your families and the feeling you want your guests to hold. We then draw it by hand — arches, jaali screens and fine botanical lines — in a warm, restrained palette of beige, cream and brown.",
   ],
   stats: [
@@ -92,7 +92,7 @@ export const faqs: { q: string; a: string }[] = [
   },
   {
     q: "Can I add Google Maps location links?",
-    a: "Yes. Clickable Google Maps links can be integrated into your digital PDF invitations, allowing guests to open the location and navigate to the venue directly.",
+    a: "Yes! We can include clickable Google Maps location links in your digital invitation, making it easy for your guests to find the wedding venue and get directions.",
   },
   {
     q: "Can I add RSVP details?",
@@ -100,7 +100,7 @@ export const faqs: { q: string; a: string }[] = [
   },
   {
     q: "Can I make changes after the invitation is created?",
-    a: "We include 2–3 revision rounds during the proofing stage. If you need minor text corrections after final delivery, we can usually accommodate them. Major changes may incur a small fee.",
+    a: "We want you to be happy with your invitation. You will have an opportunity to review the design and request revisions during the proofing process. After the final design is approved, any additional changes can be discussed with our team, and we will guide you through the available options.",
   },
   {
     q: "How do I share the digital invitation with my guests?",
@@ -108,7 +108,7 @@ export const faqs: { q: string; a: string }[] = [
   },
   {
     q: "Do you also provide physical wedding invitations?",
-    a: "Yes. We design and print premium physical invitations, including boxes, laser-cut jaali covers, scrolls, and day-of stationery. The minimum order for printed cards is typically 100 pieces.",
+    a: "Yes. We design and print premium physical invitations, including scrolls, and day-of stationery. The minimum order for printed cards is typically 100 pieces.",
   },
   {
     q: "How can I enquire or place an order?",

@@ -33,12 +33,12 @@ export const Route = createFileRoute("/stationery/$slug")({
 
     return {
       meta: [
-        { title: `${formatted} — Stationery | TheShubhmilan` },
+        { title: `${formatted} — Stationery | The Shubhmilan` },
         {
           name: "description",
           content: `Browse our curated collection of ${formatted} wedding stationery designs.`,
         },
-        { property: "og:title", content: `${formatted} — Stationery | TheShubhmilan` },
+        { property: "og:title", content: `${formatted} — Stationery | The Shubhmilan` },
         {
           property: "og:description",
           content: `Browse our curated collection of ${formatted} wedding stationery designs.`,

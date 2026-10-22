@@ -16,7 +16,7 @@ import {
 } from "@/data/products";
 import { slugify } from "@/lib/product.shared";
 
-const title = "Digital Invitations — TheShubhmilan";
+const title = "Digital Invitations — The Shubhmilan";
 const description =
   "Wedding invitation PDFs, path & pooja, kids celebrations and digital stationery — browse every design by category.";
 

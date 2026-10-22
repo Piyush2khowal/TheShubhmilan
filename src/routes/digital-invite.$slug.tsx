@@ -17,7 +17,7 @@ export const Route = createFileRoute("/digital-invite/$slug")({
       .join(" ");
     return {
       meta: [
-        { title: `${formatted} — Digital Invitations | TheShubhmilan` },
+        { title: `${formatted} — Digital Invitations | The Shubhmilan` },
         {
           name: "description",
           content: `Browse our curated collection of ${formatted} digital wedding invitations.`,

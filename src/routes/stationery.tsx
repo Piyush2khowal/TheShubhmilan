@@ -13,7 +13,7 @@ import {
 } from "@/data/products";
 import { slugify } from "@/lib/product.shared";
 
-const title = "Stationery — TheShubhmilan";
+const title = "Stationery — The Shubhmilan";
 const description =
   "Signages, welcome notes, menus, itineraries, money envelopes, tags and wedding scrolls — browse every design by category.";
 
