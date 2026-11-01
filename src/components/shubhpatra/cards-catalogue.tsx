@@ -183,7 +183,7 @@ export function CardsCatalogue({
             <button
               type="button"
               onClick={() => setShown((value) => value + PAGE_SIZE)}
-              className="border-brown text-brown hover:bg-brown hover:text-cream border px-10 py-3.5 text-[0.7rem] tracking-[0.3em] uppercase transition-colors"
+              className="border-brown text-brown hover:bg-brown hover:text-cream font-display font-medium border px-10 py-3.5 text-[0.72rem] tracking-[0.3em] uppercase transition-colors cursor-pointer"
             >
               Load More Cards
             </button>

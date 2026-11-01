@@ -83,7 +83,7 @@ export function ProductSection({
             <button
               type="button"
               onClick={() => setShown((value) => value + step)}
-              className="border-brown text-brown hover:bg-brown hover:text-cream border px-10 py-3.5 text-[0.7rem] tracking-[0.3em] uppercase transition-colors"
+              className="border-brown text-brown hover:bg-brown hover:text-cream font-display border px-10 py-3.5 text-[0.72rem] font-medium tracking-[0.3em] uppercase transition-colors cursor-pointer"
             >
               Load More
             </button>
@@ -94,7 +94,7 @@ export function ProductSection({
           <div className="mt-6 text-center">
             <Link
               to={viewAllHref}
-              className="text-gold hover:text-brown inline-block text-[0.68rem] tracking-[0.3em] uppercase underline-offset-4 hover:underline"
+              className="text-gold hover:text-brown font-display inline-block text-[0.72rem] font-medium tracking-[0.3em] uppercase underline-offset-4 hover:underline"
             >
               Browse Full Catalogue →
             </Link>

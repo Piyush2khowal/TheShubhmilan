@@ -4,14 +4,80 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* ==========================================================================
+   SHUBHPATRA / THE SHUBHMILAN LUXURY TYPOGRAPHY SYSTEM
+   - Trajan Pro: Stately Roman monumental serif for luxury headings, navigation, buttons
+   - Bickham Script Pro: Calligraphic flourishing script for poetic accents & titles
+   - Adobe Garamond: Timeless editorial serif for supreme body readability & copy
+   ========================================================================== */
+
+@font-face {
+  font-family: "Trajan Pro";
+  src: url("/fonts/TrajanPro-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Trajan Pro";
+  src: url("/fonts/TrajanPro-Bold.otf") format("opentype"),
+       url("/fonts/TrajanPro-Regular.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bickham Script Pro";
+  src: url("/fonts/BickhamScriptPro-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bickham Script Pro";
+  src: url("/fonts/BickhamScriptPro-Semibold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bickham Script Pro";
+  src: url("/fonts/BickhamScriptPro-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Adobe Garamond";
+  src: url("/fonts/AGaramond-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Adobe Garamond";
+  src: url("/fonts/AGaramond-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
 /*
  * SHUBHPATRA design system — premium Indian wedding invitations.
  * Deep green surfaces, ivory/peach light sections, brown text, gold ornaments.
  */
 
 @theme {
-  --font-display: "Cormorant Garamond", "Georgia", serif;
-  --font-body: "Jost", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Trajan Pro", "Cormorant Garamond", "Georgia", serif;
+  --font-script: "Bickham Script Pro", cursive;
+  --font-serif: "Adobe Garamond", "Georgia", serif;
+  --font-body: "Adobe Garamond", "Jost", ui-sans-serif, system-ui, sans-serif;
 
   /* SHUBHPATRA palette — soft beige + warm brown, muted gold accent. */
   --color-cream: oklch(0.9753 0.0096 72.66);
@@ -33,6 +99,18 @@
 
   --shadow-card: 0 18px 40px -28px oklch(0.3343 0.0454 46.43 / 0.28);
   --shadow-gold: 0 0 0 1px oklch(0.6641 0.0831 77.40 / 0.35), 0 18px 44px -32px oklch(0.3343 0.0454 46.43 / 0.4);
+}
+
+@utility font-script {
+  font-family: var(--font-script), cursive;
+}
+
+@utility font-trajan {
+  font-family: var(--font-display), serif;
+}
+
+@utility font-garamond {
+  font-family: var(--font-serif), serif;
 }
 
 @utility gold-rule {
@@ -222,6 +300,7 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-body);
+    font-size: 1.05rem;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -234,6 +313,16 @@
   h3,
   h4 {
     font-family: var(--font-display);
-    font-weight: 300;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+  }
+
+  /* Flourishing calligraphy script accents in titles and highlights */
+  .font-display.italic,
+  .font-script {
+    font-family: var(--font-script), cursive;
+    font-style: normal;
+    letter-spacing: 0.02em;
+    font-weight: 400;
   }
 }

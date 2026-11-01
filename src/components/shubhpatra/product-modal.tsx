@@ -166,21 +166,21 @@ function ProductModalInner({ product, onClose }: { product: BaseProduct; onClose
               </div>
             </div>
 
-            <p className="text-brown font-display mt-7 text-2xl">{product.price}</p>
+            <p className="text-brown font-display mt-7 text-2xl tracking-[0.04em]">{product.price}</p>
 
             <div className="mt-5 flex flex-col gap-3 sm:flex-row">
               <a
                 href={whatsappLink(product)}
                 target="_blank"
                 rel="noreferrer"
-                className="bg-brown text-cream hover:bg-espresso flex-1 px-6 py-3 text-center text-[0.7rem] tracking-[0.28em] uppercase transition-colors"
+                className="bg-brown text-cream hover:bg-espresso font-display font-medium flex-1 px-6 py-3.5 text-center text-[0.72rem] tracking-[0.25em] uppercase transition-colors shadow-sm"
               >
                 WhatsApp Enquiry
               </a>
               <a
                 href="#contact"
                 onClick={onClose}
-                className="border-brown/45 text-brown hover:bg-beige flex-1 border px-6 py-3 text-center text-[0.7rem] tracking-[0.28em] uppercase transition-colors"
+                className="border-brown/45 text-brown hover:bg-beige font-display font-medium flex-1 border px-6 py-3.5 text-center text-[0.72rem] tracking-[0.25em] uppercase transition-colors"
               >
                 Enquire Now
               </a>

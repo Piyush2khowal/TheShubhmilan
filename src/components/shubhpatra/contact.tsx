@@ -221,7 +221,7 @@ export function Contact() {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="bg-brown text-cream border border-brown hover:bg-cocoa hover:border-cocoa w-full sm:w-auto px-12 py-4 text-xs font-semibold tracking-[0.25em] uppercase transition-colors cursor-pointer disabled:opacity-50"
+                  className="bg-brown text-cream border border-brown hover:bg-cocoa hover:border-cocoa font-display w-full sm:w-auto px-12 py-4 text-xs font-semibold tracking-[0.25em] uppercase transition-colors cursor-pointer disabled:opacity-50 shadow-md"
                 >
                   {submitting ? "SUBMITTING..." : "BEGIN MY ENQUIRY"}
                 </button>
@@ -249,26 +249,4 @@ export function Contact() {
   );
 }
 
-export function SiteFooter() {
-  return (
-    <footer className="bg-green-night border-gold/25 border-t py-12">
-      <div className="mx-auto max-w-7xl px-5 text-center lg:px-8">
-        <img
-          src={logoSrc}
-          alt={`${brand.name} crest`}
-          width={64}
-          height={64}
-          className="border-gold/40 mx-auto h-14 w-14 rounded-full border object-cover"
-        />
-        <p className="text-ivory font-display mt-4 text-lg tracking-[0.4em]">{brand.name}</p>
-        <p className="text-gold/80 mt-2 text-[0.6rem] tracking-[0.3em] uppercase">
-          {brand.tagline}
-        </p>
-        <GoldDivider className="mt-6" />
-        <p className="text-ivory/50 mt-6 text-[0.65rem] tracking-[0.2em] uppercase">
-          © {new Date().getFullYear()} {brand.name} · All rights reserved
-        </p>
-      </div>
-    </footer>
-  );
-}
+export { SiteFooter } from "./footer";

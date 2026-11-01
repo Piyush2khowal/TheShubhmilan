@@ -69,7 +69,7 @@ export function SiteHeader() {
                 key={link.href}
                 to={link.href}
                 search={{ sub: undefined }}
-                className="text-brown/80 hover:text-gold text-[0.66rem] tracking-[0.2em] uppercase transition-colors"
+                className="text-brown/85 hover:text-gold font-display text-[0.72rem] font-medium tracking-[0.2em] uppercase transition-colors"
               >
                 {link.label}
               </Link>
@@ -77,7 +77,7 @@ export function SiteHeader() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-brown/80 hover:text-gold text-[0.66rem] tracking-[0.2em] uppercase transition-colors"
+                className="text-brown/85 hover:text-gold font-display text-[0.72rem] font-medium tracking-[0.2em] uppercase transition-colors"
               >
                 {link.label}
               </a>
@@ -87,7 +87,7 @@ export function SiteHeader() {
             href={whatsappLink()}
             target="_blank"
             rel="noreferrer"
-            className="border-brown text-brown hover:bg-brown hover:text-cream border px-5 py-2 text-[0.66rem] tracking-[0.2em] uppercase transition-colors"
+            className="border-brown text-brown hover:bg-brown hover:text-cream font-display border px-5 py-2 text-[0.72rem] font-medium tracking-[0.2em] uppercase transition-colors"
           >
             Enquire
           </a>
@@ -114,7 +114,7 @@ export function SiteHeader() {
                   to={link.href}
                   search={{ sub: undefined }}
                   onClick={() => setOpen(false)}
-                  className="text-brown/85 hover:text-gold border-gold/15 border-b py-3 text-sm tracking-[0.2em] uppercase last:border-0"
+                  className="text-brown/90 hover:text-gold font-display border-gold/15 border-b py-3 text-sm font-medium tracking-[0.2em] uppercase last:border-0"
                 >
                   {link.label}
                 </Link>
@@ -123,7 +123,7 @@ export function SiteHeader() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="text-brown/85 hover:text-gold border-gold/15 border-b py-3 text-sm tracking-[0.2em] uppercase last:border-0"
+                  className="text-brown/90 hover:text-gold font-display border-gold/15 border-b py-3 text-sm font-medium tracking-[0.2em] uppercase last:border-0"
                 >
                   {link.label}
                 </a>
@@ -133,7 +133,7 @@ export function SiteHeader() {
               href={whatsappLink()}
               target="_blank"
               rel="noreferrer"
-              className="bg-brown text-cream mt-4 py-3 text-center text-xs tracking-[0.25em] uppercase"
+              className="bg-brown text-cream font-display mt-4 py-3 text-center text-xs font-medium tracking-[0.25em] uppercase"
             >
               WhatsApp Enquiry
             </a>

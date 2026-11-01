@@ -131,7 +131,7 @@ function VideoModalInner({ video, onClose }: { video: VideoProduct; onClose: () 
             href={whatsappLink(video)}
             target="_blank"
             rel="noreferrer"
-            className="bg-brown text-cream hover:bg-espresso px-6 py-3 text-center text-[0.7rem] tracking-[0.28em] uppercase transition-colors"
+            className="bg-brown text-cream hover:bg-espresso font-display font-medium px-6 py-3.5 text-center text-[0.72rem] tracking-[0.25em] uppercase transition-colors shadow-sm cursor-pointer"
           >
             Enquire · {video.price}
           </a>

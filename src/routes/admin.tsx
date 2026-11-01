@@ -514,6 +514,7 @@ function AdminPage() {
             </button>
             <Link
               to="/digital-invite"
+              search={{ sub: undefined }}
               className="bg-brown hover:bg-cocoa border border-brown px-3.5 py-2 text-xs tracking-[0.16em] uppercase text-cream cursor-pointer"
             >
               View Catalogue →

@@ -51,27 +51,27 @@ export function ProductCard({
             {product.collection}
           </p>
         ) : null}
-        <h3 className={cn("mt-2 text-xl leading-snug", dark ? "text-ivory" : "text-green-deep")}>
+        <h3 className={cn("mt-2 text-xl leading-snug font-display tracking-[0.04em]", dark ? "text-ivory" : "text-green-deep")}>
           {product.title}
         </h3>
         <div className="gold-rule mx-auto mt-3 h-px w-14" />
         <p
           className={cn(
-            "mt-3 line-clamp-2 text-xs leading-relaxed",
+            "mt-3 line-clamp-2 text-xs leading-relaxed font-body",
             dark ? "text-ivory/70" : "text-brown/75",
           )}
         >
           {product.description}
         </p>
         <div className="mt-auto pt-5">
-          <p className={cn("font-display text-lg", dark ? "text-gold-bright" : "text-brown")}>
+          <p className={cn("font-display text-lg tracking-[0.05em]", dark ? "text-gold-bright" : "text-brown")}>
             {product.price}
           </p>
           <button
             type="button"
             onClick={() => onOpen(product)}
             className={cn(
-              "mt-4 w-full border py-2.5 text-[0.65rem] tracking-[0.3em] uppercase transition-colors",
+              "mt-4 w-full border py-2.5 font-display text-[0.68rem] font-medium tracking-[0.25em] uppercase transition-colors cursor-pointer",
               dark
                 ? "border-gold/60 text-gold hover:bg-gold hover:text-green-deep"
                 : "border-green/40 text-green-deep hover:bg-green-deep hover:text-ivory",

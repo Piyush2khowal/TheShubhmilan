@@ -59,7 +59,7 @@ export function SectionHeading({
     <div className={cn("mx-auto max-w-2xl text-center", className)}>
       <p
         className={cn(
-          "text-[0.7rem] tracking-[0.45em] uppercase",
+          "font-display text-[0.72rem] font-medium tracking-[0.4em] uppercase",
           dark ? "text-gold" : "text-brown/70",
         )}
       >
@@ -67,7 +67,7 @@ export function SectionHeading({
       </p>
       <h2
         className={cn(
-          "mt-4 text-3xl leading-tight sm:text-4xl md:text-5xl",
+          "mt-4 font-display text-3xl leading-tight tracking-[0.04em] sm:text-4xl md:text-5xl",
           dark ? "text-ivory" : "text-green-deep",
         )}
       >
@@ -77,7 +77,7 @@ export function SectionHeading({
       {lead ? (
         <p
           className={cn(
-            "mt-6 text-sm leading-relaxed sm:text-base",
+            "mt-6 font-body text-sm leading-relaxed sm:text-base",
             dark ? "text-ivory/75" : "text-brown/80",
           )}
         >
