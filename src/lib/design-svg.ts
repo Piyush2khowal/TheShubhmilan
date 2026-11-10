@@ -1,7 +1,7 @@
 /**
  * Programmatic SVG "design preview" generator.
  *
- * SHUBHPATRA needs dozens of visually distinct catalogue thumbnails per
+ * THE SHUBHMILAN needs dozens of visually distinct catalogue thumbnails per
  * subcategory without shipping hundreds of raster images. Every design is
  * instead rendered as a small, deterministic SVG built from a seed string
  * (the product id) — same id always produces the same artwork, different
@@ -35,7 +35,7 @@ function mulberry32(seed: number) {
   };
 }
 
-/** SHUBHPATRA palette — cream/beige/sand/taupe/cocoa/espresso + muted gold + maroon accent. */
+/** THE SHUBHMILAN palette — cream/beige/sand/taupe/cocoa/espresso + muted gold + maroon accent. */
 const PALETTES = [
   {
     bg: "#FBF6EC",

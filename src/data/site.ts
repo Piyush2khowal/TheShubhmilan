@@ -1,5 +1,5 @@
 /**
- * SHUBHPATRA site copy — About, Why Choose Us, Testimonials, FAQ.
+ * THE SHUBHMILAN site copy — About, Why Choose Us, Testimonials, FAQ.
  * Edit text here; the components render whatever is in these arrays.
  */
 

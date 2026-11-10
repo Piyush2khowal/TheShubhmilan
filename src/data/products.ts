@@ -1,6 +1,5 @@
 /**
- * SHUBHPATRA — central product catalogue.
- *
+ * THE SHUBHMILAN — central product catalogue.
  * HOW TO EDIT
  * -----------
  * Everything the site shows comes from this file. To add a product, append an

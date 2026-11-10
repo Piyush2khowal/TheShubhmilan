@@ -13,7 +13,7 @@ export function GoldDivider({ className }: { className?: string }) {
   );
 }
 
-/** Botanical line ornament inspired by the SHUBHPATRA crest. */
+/** Botanical line ornament inspired by the THE SHUBHMILAN crest. */
 export function BotanicalOrnament({ className }: { className?: string }) {
   return (
     <svg

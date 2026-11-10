@@ -4,7 +4,7 @@ Drop the client's real files here, then reference them from `src/data/products.t
 as plain strings (no import needed for files in `public/`):
 
 ```
-public/assets/logo/            -> "/assets/logo/shubhpatra.png"
+public/assets/logo/            -> "/assets/logo/theshubhmilan_logo.png"
 public/assets/digital/         -> "/assets/digital/dig-001.jpg"
 public/assets/stationery/      -> "/assets/stationery/sta-001.jpg"
 public/assets/physical-cards/  -> "/assets/physical-cards/pc-001.jpg"

@@ -1,12 +1,12 @@
 # Shubh Patra: Elegant Indian Invitations
 
-I want to create a new premium Indian wedding invitation website called SHUBHPATRA.
+I want to create a new premium Indian wedding invitation website called THE SHUBHMILAN.
 
-I am providing my existing Ivory Vows website source code as the technical foundation/reference. Do NOT modify, overwrite, or depend on the original Ivory Vows website. Create SHUBHPATRA as a separate independent website.
+I am providing my existing Ivory Vows website source code as the technical foundation/reference. Do NOT modify, overwrite, or depend on the original Ivory Vows website. Create THE SHUBHMILAN as a separate independent website.
 
-Use the existing Ivory Vows architecture and functionality where useful, but redesign the visual identity so SHUBHPATRA feels like a different premium Indian wedding brand.
+Use the existing Ivory Vows architecture and functionality where useful, but redesign the visual identity so THE SHUBHMILAN feels like a different premium Indian wedding brand.
 
-SHUBHPATRA categories:
+THE SHUBHMILAN categories:
 
 1. Digital Invitations
 
@@ -36,7 +36,7 @@ PRODUCT MANAGEMENT:
 
 DESIGN DIRECTION:
 
-SHUBHPATRA should look premium, rich, ceremonial and Indian-inspired rather than like a Western bridal website.
+THE SHUBHMILAN should look premium, rich, ceremonial and Indian-inspired rather than like a Western bridal website.
 
 Color palette:
 
@@ -54,7 +54,7 @@ Color palette:
 
 - Bright Gold: #F0C05A
 
-Use the SHUBHPATRA logo I provide.
+Use the THE SHUBHMILAN logo I provide.
 
 VISUAL STYLE:
 
@@ -72,13 +72,13 @@ VISUAL STYLE:
 
 - Avoid simply copying the Ivory Vows visual design.
 
-- Create a distinct SHUBHPATRA identity.
+- Create a distinct THE SHUBHMILAN identity.
 
 HERO:
 
 Create a centered premium hero rather than simply copying the Ivory Vows two-column hero.
 
-Use an elegant arch frame inspired by the SHUBHPATRA logo.
+Use an elegant arch frame inspired by the THE SHUBHMILAN logo.
 
 The hero should feel like a luxury Indian wedding invitation.
 
@@ -154,31 +154,19 @@ Preserve useful existing functionality from Ivory Vows such as:
 
 - smooth scrolling
 
-However, redesign the visual presentation for SHUBHPATRA.
+However, redesign the visual presentation for THE SHUBHMILAN.
 
 IMPORTANT:
 
 First inspect the uploaded Ivory Vows codebase and understand its existing structure.
 
-Then create a separate SHUBHPATRA implementation.
+Then create a separate THE SHUBHMILAN implementation.
 
 Do not blindly rewrite everything.
 
 Reuse stable functionality where appropriate while creating a new visual identity.
 
-Build the website in a clean, maintainable way so I can continue adding real wedding card designs, stationery designs, videos and physical cards later.   Use https://ivoryvows.in/ as the reference website. Please inspect its design, layout, interactions, product/category structure and responsive behavior. I want to create a separate SHUBHPATRA website using the existing website as a technical and functional reference, but with a completely distinct SHUBHPATRA visual identity. Do not modify or replace the original Ivory Vows website.
-
-This project was built with [Lovable](https://lovable.dev).
-
-**Live app**: https://shubhpatra.lovable.app
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/9ee36d34-6cc1-45a9-94ca-0041f4968338).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+Build the website in a clean, maintainable way so I can continue adding real wedding card designs, stationery designs, videos and physical cards later.   Use https://ivoryvows.in/ as the reference website. Please inspect its design, layout, interactions, product/category structure and responsive behavior. I want to create a separate THE SHUBHMILAN website using the existing website as a technical and functional reference, but with a completely distinct THE SHUBHMILAN visual identity. Do not modify or replace the original Ivory Vows website.
 
 ## Development
 

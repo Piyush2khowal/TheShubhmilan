@@ -5,7 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 
 /* ==========================================================================
-   SHUBHPATRA / THE SHUBHMILAN LUXURY TYPOGRAPHY SYSTEM
+   THE SHUBHMILAN / THE SHUBHMILAN LUXURY TYPOGRAPHY SYSTEM
    - Trajan Pro: Stately Roman monumental serif for luxury headings, navigation, buttons
    - Bickham Script Pro: Calligraphic flourishing script for poetic accents & titles
    - Adobe Garamond: Timeless editorial serif for supreme body readability & copy
@@ -69,7 +69,7 @@
 }
 
 /*
- * SHUBHPATRA design system — premium Indian wedding invitations.
+ * THE SHUBHMILAN design system — premium Indian wedding invitations.
  * Deep green surfaces, ivory/peach light sections, brown text, gold ornaments.
  */
 
@@ -79,7 +79,7 @@
   --font-serif: "Adobe Garamond", "Georgia", serif;
   --font-body: "Adobe Garamond", "Jost", ui-sans-serif, system-ui, sans-serif;
 
-  /* SHUBHPATRA palette — soft beige + warm brown, muted gold accent. */
+  /* THE SHUBHMILAN palette — soft beige + warm brown, muted gold accent. */
   --color-cream: oklch(0.9753 0.0096 72.66);
   --color-beige: oklch(0.9227 0.0263 71.18);
   --color-sand: oklch(0.8732 0.0336 70.30);

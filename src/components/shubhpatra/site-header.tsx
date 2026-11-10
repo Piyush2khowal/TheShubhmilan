@@ -57,7 +57,7 @@ export function SiteHeader() {
               {brand.name}
             </span>
             <span className="text-taupe hidden text-[0.6rem] tracking-[0.3em] uppercase sm:block">
-              Wedding Invitations
+              {/* Wedding Invitations */}
             </span>
           </span>
         </a>
