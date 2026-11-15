@@ -2,16 +2,15 @@ import { Link } from "@tanstack/react-router";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import bannerPhysical from "@/assets/hero_banners/banner-physical-cards.jpg";
-import bannerDigital from "@/assets/hero_banners/banner-digital-invites.jpg";
-import bannerStationery from "@/assets/hero_banners/banner-stationery.jpg";
-
 interface SlideData {
   id: string;
   heading: string;
   subtitle: string;
   href: "/physical-cards" | "/digital-invite" | "/stationery";
-  image: string;
+  /** WebP source served from /public/assets/banners/ */
+  webp: string;
+  /** Original JPEG fallback kept in src/assets/hero_banners/ */
+  jpeg: string;
   alt: string;
 }
 
@@ -21,7 +20,8 @@ const slides: SlideData[] = [
     heading: "Physical Cards",
     subtitle: "Every Love Story Deserves a Beautiful Beginning.",
     href: "/physical-cards",
-    image: bannerPhysical,
+    webp: "/assets/banners/banner-physical-cards.webp",
+    jpeg: "/assets/banners/banner-physical-cards.jpeg",
     alt: "Physical Cards — Every Love Story Deserves a Beautiful Beginning. Indian wedding invitation stationery collection.",
   },
   {
@@ -29,7 +29,8 @@ const slides: SlideData[] = [
     heading: "Digital Invites",
     subtitle: "Send Love Before the Celebration Begins.",
     href: "/digital-invite",
-    image: bannerDigital,
+    webp: "/assets/banners/banner-digital-invites.webp",
+    jpeg: "/assets/banners/banner-digital-invites.jpeg",
     alt: "Digital Invites — Send Love Before the Celebration Begins. Luxury animated wedding invites and phone suites.",
   },
   {
@@ -37,7 +38,8 @@ const slides: SlideData[] = [
     heading: "Digital & Physical Stationery",
     subtitle: "Crafted for Celebrations, Designed for Memories.",
     href: "/stationery",
-    image: bannerStationery,
+    webp: "/assets/banners/banner-stationery.webp",
+    jpeg: "/assets/banners/banner-stationery.jpeg",
     alt: "Digital & Physical Stationery — Crafted for Celebrations, Designed for Memories. Wedding signage, menus, and stationery.",
   },
 ];
@@ -121,7 +123,7 @@ export function Hero() {
     <section
       id="top"
       aria-label="Featured Collections Carousel"
-      className="relative w-full bg-[#fbf6ee] pt-16 sm:pt-20 lg:pt-24 select-none"
+      className="relative w-full bg-[#fbf6ee] pt-14 sm:pt-16 lg:pt-[4.5rem] select-none"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onKeyDown={handleKeyDown}
@@ -155,22 +157,31 @@ export function Hero() {
                 className="group block relative w-full focus:outline-none focus-visible:ring-2 focus-visible:ring-gold cursor-pointer"
                 title={`${slide.heading} — ${slide.subtitle}`}
               >
-                {/* Visual Banner Container with Responsive Aspect Ratio */}
-                <div className="relative w-full aspect-[19/10.5] max-h-[760px] min-h-[220px] sm:min-h-[360px] md:min-h-[460px] lg:min-h-[560px] bg-[#fbf6ee] flex items-center justify-center overflow-hidden">
-                  <img
-                    src={slide.image}
-                    alt={slide.alt}
-                    loading={index === 0 ? "eager" : "lazy"}
-                    fetchPriority={index === 0 ? "high" : "auto"}
-                    decoding="async"
-                    width={1520}
-                    height={840}
-                    className="w-full h-full object-cover sm:object-contain object-center transition-transform duration-700 ease-out group-hover:scale-[1.01]"
-                  />
-
-                  {/* Subtle edge vignette to blend seamlessly */}
-                  <div className="pointer-events-none absolute inset-x-0 top-0 h-4 bg-gradient-to-b from-[#fbf6ee]/40 to-transparent" />
-                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-4 bg-gradient-to-t from-[#fbf6ee]/40 to-transparent" />
+                {/*
+                  Exact image ratio: 1520 × 663 px.
+                  object-cover fills the frame on every breakpoint — no letterboxing, no blurring.
+                  min-h values ensure comfortable height on small screens.
+                */}
+                <div className="relative w-full aspect-[1520/663] min-h-[200px] sm:min-h-[300px] md:min-h-[380px] lg:min-h-[480px] overflow-hidden bg-[#fbf6ee]">
+                  <picture>
+                    {/* WebP — 93–133 KB, served from public/assets/banners/ */}
+                    <source
+                      srcSet={slide.webp}
+                      type="image/webp"
+                    />
+                    {/* JPEG fallback — original quality preserved */}
+                    <img
+                      src={slide.jpeg}
+                      alt={slide.alt}
+                      loading={index === 0 ? "eager" : "lazy"}
+                      fetchPriority={index === 0 ? "high" : "auto"}
+                      decoding={index === 0 ? "sync" : "async"}
+                      width={1520}
+                      height={663}
+                      className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.012]"
+                      style={{ imageRendering: "auto" }}
+                    />
+                  </picture>
                 </div>
 
                 {/* Accessible text content */}

@@ -77,23 +77,23 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
+      { title: "The Shubhmilan — Premium Indian Wedding Invitations" },
       {
         name: "description",
         content:
           "Digital invitations, cinematic invitation films, day-of stationery and heirloom printed cards — crafted with temple arches, jaali screens and gold foil.",
       },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
+      { name: "author", content: "The Shubhmilan" },
+      { property: "og:title", content: "The Shubhmilan — Premium Indian Wedding Invitations" },
       {
         property: "og:description",
         content:
           "Digital invitations, cinematic invitation films, day-of stationery and heirloom printed cards — crafted with temple arches, jaali screens and gold foil.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://theshubhmilan.in" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
-      { name: "twitter:title", content: "Lovable App" },
+      { name: "twitter:title", content: "The Shubhmilan — Premium Indian Wedding Invitations" },
       {
         name: "twitter:description",
         content:
@@ -101,26 +101,30 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       {
         property: "og:image",
-        content:
-          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/41ab87bc3512b8ffee3b44e715a1e309/id-preview-0da2278a--9ee36d34-6cc1-45a9-94ca-0041f4968338.lovable.app-1786722071464.png",
+        content: "https://theshubhmilan.in/assets/banners/banner-physical-cards.webp",
       },
       {
         name: "twitter:image",
-        content:
-          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/41ab87bc3512b8ffee3b44e715a1e309/id-preview-0da2278a--9ee36d34-6cc1-45a9-94ca-0041f4968338.lovable.app-1786722071464.png",
+        content: "https://theshubhmilan.in/assets/banners/banner-physical-cards.webp",
       },
     ],
-      links: [
-    {
-      rel: "stylesheet",
-      href: appCss,
-    },
-    {
-      rel: "icon",
-      type: "image/png",
-      href: "/assets/logo/theshubhmilan_logo.png",
-    },
-],
+    links: [
+      {
+        rel: "stylesheet",
+        href: appCss,
+      },
+      {
+        rel: "icon",
+        type: "image/png",
+        href: "/assets/logo/theshubhmilan_logo.png",
+      },
+      {
+        rel: "preload",
+        as: "image",
+        href: "/assets/banners/banner-physical-cards.webp",
+        type: "image/webp",
+      },
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,

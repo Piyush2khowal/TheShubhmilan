@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import type { BaseProduct } from "@/data/products";
 import { thumbnailSrc } from "@/lib/media";
 import { cn } from "@/lib/utils";
@@ -16,6 +18,8 @@ export function ProductCard({
   priority?: boolean;
 }) {
   const dark = tone === "dark";
+  const [loaded, setLoaded] = useState(false);
+
   return (
     <article
       className={cn(
@@ -30,19 +34,30 @@ export function ProductCard({
       <button
         type="button"
         onClick={() => onOpen(product)}
-        className="block aspect-[4/5] sm:aspect-square w-full overflow-hidden bg-beige/35 text-left cursor-pointer"
+        className="block aspect-[4/5] sm:aspect-square w-full overflow-hidden bg-beige/35 text-left cursor-pointer relative"
       >
-          <img
-            src={thumbnailSrc(product.images?.[0] ?? product.image, priority ? 900 : 640)}
-            alt={product.title}
-            loading={priority ? "eager" : "lazy"}
-            fetchPriority={priority ? "high" : "auto"}
-            decoding="async"
-            width={600}
-            height={750}
-            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+        {/* Shimmer skeleton — visible until image loads */}
+        {!loaded && (
+          <span
+            aria-hidden="true"
+            className="skeleton absolute inset-0 z-10"
           />
+        )}
+        <img
+          src={thumbnailSrc(product.images?.[0] ?? product.image, priority ? 900 : 640)}
+          alt={product.title}
+          loading={priority ? "eager" : "lazy"}
+          fetchPriority={priority ? "high" : "auto"}
+          decoding="async"
+          width={600}
+          height={750}
+          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+          onLoad={() => setLoaded(true)}
+          className={cn(
+            "h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]",
+            loaded ? "opacity-100" : "opacity-0",
+          )}
+        />
       </button>
 
       <div className="flex flex-1 flex-col px-3 pt-5 pb-3 text-center">
