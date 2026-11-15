@@ -102,17 +102,16 @@ import std10_4 from "@/assets/digital_invitations/save_the_date/STD10/STD10_3.jp
 import vi1Video from "@/assets/video_invitation/VI_1.mp4";
 
 // VI_2
-import vi2Video from "@/assets/video_invitation/VI_2.mp4";
+import vi2Video from "@/assets/video_invitation/VI_2-compressed.mp4";
 
 // VI_3
 import vi3Video from "@/assets/video_invitation/VI_3.mp4";
 
 // VI_4
-import vi4Video from "@/assets/video_invitation/VI_4.MP4";
+import vi4Video from "@/assets/video_invitation/VI_4-compressed.mp4";
 
 // VI_5
-import vi5Video from "@/assets/video_invitation/VI_5.mp4";
-
+import vi5Video from "@/assets/video_invitation/VI_5-compressed.mp4";
 // VI_6
 import vi6Video from "@/assets/video_invitation/VI_6.mp4";
 
